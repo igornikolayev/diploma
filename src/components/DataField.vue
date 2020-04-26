@@ -5,8 +5,6 @@
                 <div class="flex-between">
                     <div>
                         <router-link to="/">Home</router-link>
-                        |
-                        <router-link to="/about">About</router-link>
                     </div>
                     <result-button v-on:getResult="getResult()" data-toggle="modal" data-target=".bd-example-modal-lg">
                         >
@@ -15,7 +13,7 @@
             </div>
         </header>
         <div class="header-placeholder"></div>
-        <CarTable/>
+        <CarTable />
         <div class="container">
             <div class="input-area">
                 <h3 class="input-area__header">
@@ -25,117 +23,91 @@
                 <div class="input-area__section input-area__lambda flex-row">
                     <h4 class="title-value">λ11</h4>
                     <input
-                            type="text"
-                            value="0.65"
+                            type="number"
                             class="input-area__input input-lambdaTac"
-                            placeholder="λ11"
-                    />
+                            placeholder="λ11" v-model="tact_lambda[0]" @change="setLocal"/>
                     <h4 class="title-value">λ12</h4>
                     <input
-                            type="text"
-                            value="0.75"
+                            type="number"
                             class="input-area__input input-lambdaTac"
-                            placeholder="λ12"
-                    />
+                            placeholder="λ12" v-model="tact_lambda[1]" @change="setLocal"/>
                     <h4 class="title-value">λ13</h4>
                     <input
-                            type="text"
-                            value="0.8"
+                            type="number"
                             class="input-area__input input-lambdaTac"
-                            placeholder="λ13"
-                    />
+                            placeholder="λ13" v-model="tact_lambda[2]" @change="setLocal"/>
                     <h4 class="title-value">λ14</h4>
                     <input
-                            type="text"
-                            value="0.9"
+                            type="number"
                             class="input-area__input input-lambdaTac"
-                            placeholder="λ14"
-                    />
+                            placeholder="λ14" v-model="tact_lambda[3]" @change="setLocal"/>
                 </div>
                 <h3 class="input-area__header">Показники для тактичної ефективності</h3>
                 <div class="input-area__section">
                     <h4 class="title-value">Доставлено чоловік a-дост</h4>
                     <input
-                            type="text"
+                            type="number"
                             class="input-tact-ef"
-                            value="3"
                             title="достав. чол."
-                            placeholder="достав. чол."
-                    />
+                            placeholder="достав. чол." v-model="tact_eff[0]" @change="setLocal"/>
 
                     <h4 class="title-value">Необхідно доставити чоловік a-вст</h4>
                     <input
-                            type="text"
+                            type="number"
                             class="input-tact-ef"
-                            value="3"
                             title="Необхідно доставити чоловік"
-                            placeholder="необ. достав. чол."
-                    />
+                            placeholder="необ. достав. чол." v-model="tact_eff[1]" @change="setLocal"/>
 
                     <h4 class="title-value">Доставлено вантажу m-дост (ц)</h4>
                     <input
-                            type="text"
+                            type="number"
                             class="input-tact-ef"
-                            value="100"
-                            placeholder="достав. вантажу (ц)"
-                    />
+                            placeholder="достав. вантажу (ц)" v-model="tact_eff[2]" @change="setLocal"/>
 
                     <h4 class="title-value">
                         Маса вантажу, яку необхідно доставити m-вст (ц)
                     </h4>
                     <input
-                            type="text"
+                            type="number"
                             class="input-tact-ef"
-                            value="100"
-                            placeholder="необх. достав. вантаж (ц)"
-                    />
+                            placeholder="необх. достав. вантаж (ц)" v-model="tact_eff[3]" @change="setLocal"/>
 
                     <h4 class="title-value">
                         Об'єм вантажу, який доставлено V-дост (м3)
                     </h4>
                     <input
-                            type="text"
+                            type="number"
                             class="input-tact-ef"
-                            value="20"
                             title="достав. об'єм вантажу (м3)"
-                            placeholder="достав. об'єм вантажу (м3)"
-                    />
+                            placeholder="достав. об'єм вантажу (м3)" v-model="tact_eff[4]" @change="setLocal"/>
                     <h4 class="title-value">
                         Об'єм вантажу, який необхідно доставити V-вст (м3)
                     </h4>
                     <input
-                            type="text"
+                            type="number"
                             class="input-tact-ef"
-                            value="20"
                             title="достав. об'єм вантажу (м3)"
-                            placeholder="достав. об'єм вантажу (м3)"
-                    />
+                            placeholder="достав. об'єм вантажу (м3)" v-model="tact_eff[5]" @change="setLocal"/>
 
                     <h4 class="title-value">Нормативно встановлений час t-вст (год)</h4>
                     <input
-                            type="text"
+                            type="number"
                             class="input-tact-ef"
-                            value="12"
                             title="норм. встанов. час"
-                            placeholder="норм. встанов. час"
-                    />
+                            placeholder="норм. встанов. час" v-model="tact_eff[6]" @change="setLocal"/>
                     <h4 class="title-value">Фактичний час перевезення t-факт (год)</h4>
                     <input
-                            type="text"
+                            type="number"
                             class="input-tact-ef"
-                            value="12"
                             title="фактичний час"
-                            placeholder="фактичний час"
-                    />
+                            placeholder="фактичний час" v-model="tact_eff[7]" @change="setLocal"/>
 
                     <h4 class="title-value">Кількість техніки, яка прибула справною</h4>
                     <input
-                            type="text"
+                            type="number"
                             class="input-tact-ef"
-                            value="1"
                             title="кількість техніки, яка прибула в справленому стані"
-                            placeholder="кількість техніки"
-                    />
+                            placeholder="кількість техніки" v-model="tact_eff[8]" @change="setLocal"/>
                 </div>
                 <h3 class="input-area__header">
                     Вагові коефіцієнти складових показника технічної ефективності
@@ -144,88 +116,66 @@
                 <div class="input-area__lambda flex-row">
                     <h4 class="title-value">λ21</h4>
                     <input
-                            type="text"
-                            value="0.65"
+                            type="number"
                             class="input-area__input input-lambdaTechn"
-                            placeholder="λ21"
-                    />
+                            placeholder="λ21" v-model="techn_lambda[0]" @change="setLocal"/>
                     <h4 class="title-value">λ22</h4>
                     <input
-                            type="text"
-                            value="0.75"
+                            type="number"
                             class="input-area__input input-lambdaTechn"
-                            placeholder="λ22"
-                    />
+                            placeholder="λ22" v-model="techn_lambda[1]" @change="setLocal"/>
                     <h4 class="title-value">λ23</h4>
                     <input
-                            type="text"
-                            value="0.8"
+                            type="number"
                             class="input-area__input input-lambdaTechn"
-                            placeholder="λ23"
-                    />
+                            placeholder="λ23" v-model="techn_lambda[2]" @change="setLocal"/>
                     <h4 class="title-value">λ24</h4>
                     <input
-                            type="text"
-                            value="0.9"
+                            type="number"
                             class="input-area__input input-lambdaTechn"
-                            placeholder="λ24"
-                    />
+                            placeholder="λ24" v-model="techn_lambda[3]" @change="setLocal"/>
                     <h4 class="title-value">λ25</h4>
                     <input
-                            type="text"
-                            value="0.8"
+                            type="number"
                             class="input-area__input input-lambdaTechn"
-                            placeholder="λ25"
-                    />
+                            placeholder="λ25" v-model="techn_lambda[4]" @change="setLocal"/>
                     <h4 class="title-value">λ26</h4>
                     <input
-                            type="text"
-                            value="0.9"
+                            type="number"
                             class="input-area__input input-lambdaTechn"
-                            placeholder="λ26"
-                    />
+                            placeholder="λ26" v-model="techn_lambda[5]" @change="setLocal"/>
                 </div>
                 <h3 class="input-area__header">Показники для технічної ефективності</h3>
                 <h4 class="title-value">Планова відстань перевезень L-вст (км)</h4>
                 <input
-                        type="text"
+                        type="number"
                         class="input-techn-ef"
-                        value="1000"
                         title="планова відстань перевезень"
-                        placeholder="планова відстань перевезень"
-                />
+                        placeholder="планова відстань перевезень" v-model="techn_eff[0]" @change="setLocal"/>
                 <h4 class="title-value">Фактична відстань перевезень L-факт (км)</h4>
                 <input
-                        type="text"
+                        type="number"
                         class="input-techn-ef"
-                        value="1200"
                         title="фактична відстань"
-                        placeholder="фактична відстань"
-                />
+                        placeholder="фактична відстань" v-model="techn_eff[1]" @change="setLocal"/>
                 <h3 class="input-area__header">Вагові показники для комплексної ефективності</h3>
 
                 <div class="input-area__lambda flex-row">
                     <h4 class="title-value">λ1*</h4>
                     <input
-                            type="text"
-                            value="0.65"
+                            type="number"
                             class="input-area__input input-lambdaComplex"
-                            placeholder="λ1*"
-                    />
+                            placeholder="λ1*" v-model="complex_lambda[0]" @change="setLocal"/>
                     <h4 class="title-value">λ2*</h4>
                     <input
-                            type="text"
-                            value="0.75"
+                            type="number"
                             class="input-area__input input-lambdaComplex"
-                            placeholder="λ2*"
-                    />
+                            placeholder="λ2*" v-model="complex_lambda[1]" @change="setLocal"/>
                     <h4 class="title-value">λ3*</h4>
                     <input
-                            type="text"
-                            value="0.75"
+                            type="number"
                             class="input-area__input input-lambdaComplex"
-                            placeholder="λ3*"
-                    />
+                            placeholder="λ3*" v-model="complex_lambda[2]" @change="setLocal"/>
                 </div>
             </div>
             <div class="result-area">
@@ -255,11 +205,11 @@
             return {
                 showResult: false,
                 resultObject: '',
-                tact_eff: [],
-                tact_lambda: [],
-                techn_eff: [],
-                techn_lambda: [],
-                complex_lambda: [],
+                tact_eff: [3,3, 10,10, 20,20, 12,12, 3],
+                tact_lambda: [0.65, 0.7, 0.8, 0.9],
+                techn_lambda: [0.8,0.9,0.6,0.7,0.8,0.7],
+                techn_eff: [1000,1200],
+                complex_lambda: [0.7,0.6,0.8],
                 L_vst: Number,
                 L_fact: Number,
                 fuel: {
@@ -330,6 +280,13 @@
             ResultButton
         },
         methods: {
+            setLocal(){
+                localStorage.setItem('tactEff', JSON.stringify(this.tact_eff));
+                localStorage.setItem('tactLambda', JSON.stringify(this.tact_lambda));
+                localStorage.setItem('techEff', JSON.stringify(this.techn_eff));
+                localStorage.setItem('techLamba', JSON.stringify(this.techn_lambda));
+                localStorage.setItem('complexLambda', JSON.stringify(this.complex_lambda));
+            },
             outputResult() {
                 this.K_11 = parseFloat(this.K_11).toFixed(3);
                 this.K_12 = parseFloat(this.K_12).toFixed(3);
@@ -378,40 +335,10 @@
 
             },
             getValueFromInputs() {
-                /**
-                 * get value from inputs for tactic eff.
-                 */
-                let tact_lambda_area = document.getElementsByClassName("input-lambdaTac");
-                for (let index = 0; index < tact_lambda_area.length; index++) {
-                    this.tact_lambda[index] = parseFloat(tact_lambda_area[index].value);
-                }
-
-                let tact_eff_input = document.getElementsByClassName("input-tact-ef");
-                for (let index = 0; index < tact_eff_input.length; index++) {
-                    this.tact_eff[index] = parseFloat(tact_eff_input[index].value);
-                }
-                /**
-                 * get value from inputs for techn eff.
-                 */
-                let techn_lambda_area = document.getElementsByClassName("input-lambdaTechn");
-                for (let index = 0; index < techn_lambda_area.length; index++) {
-                    this.techn_lambda[index] = parseFloat(techn_lambda_area[index].value);
-                }
-
-                let techn_eff_input = document.getElementsByClassName("input-techn-ef");
-                for (let index = 0; index < techn_eff_input.length; index++) {
-                    this.techn_eff[index] = parseFloat(techn_eff_input[index].value);
-                }
 
                 this.L_vst = this.techn_eff[0];
                 this.L_fact = this.techn_eff[1];
-                /**
-                 * get value from inputs for comlex lambda.
-                 */
-                let complex_lambda_area = document.getElementsByClassName("input-lambdaComplex");
-                for (let index = 0; index < complex_lambda_area.length; index++) {
-                    this.complex_lambda[index] = parseFloat(complex_lambda_area[index].value);
-                }
+
 
             },
             getSelectedCars() {
@@ -573,12 +500,12 @@
                 this.complex_eff = this.T_1 * this.complex_lambda[0] + this.T_2 * this.complex_lambda[1] + this.T_3 * this.complex_lambda[2];
             },
             getResult() {
-                this.getValueFromInputs();
                 this.getSelectedCars();
                 if (this.selected_cars.model.length < 1) {
                     alert("Виберіть техніку")
                 } else {
                     this.showResult = true;
+                    this.getValueFromInputs();
                     this.getValueTact();
                     this.getValueTechn();
                     this.getValueEconomy();
@@ -586,7 +513,29 @@
                     this.outputResult();
                 }
             }
+        },
+        created() {
+            let localTact = localStorage.getItem('tactEff');
+            let localTactLambda = localStorage.getItem('tactLambda');
+            let localTechn = localStorage.getItem('techEff');
+            let localTechnLambda = localStorage.getItem('techLamba');
+            let localComplexLambda = localStorage.getItem('complexLambda');
 
+            if (localTact !== null){
+                this.tact_eff = JSON.parse(localTact)
+            }
+            if (localTactLambda !== null){
+                this.tact_lambda = JSON.parse(localTactLambda)
+            }
+            if (localTechn !== null){
+                this.techn_eff = JSON.parse(localTechn)
+            }
+            if (localTechnLambda !== null){
+                this.techn_lambda = JSON.parse(localTechnLambda)
+            }
+            if (localComplexLambda !== null){
+                this.complex_lambda = JSON.parse(localComplexLambda)
+            }
         }
 
     }

@@ -32,106 +32,119 @@
                 </thead>
 
                 <tbody class="table__content">
-                <tr v-for="(car, id) in model" :key="id" class=" row-car ">
+                <tr v-for="(car, id) in cars" :key="id" class=" row-car ">
                     <td><input type="checkbox" class="check-car"/></td>
                     <td>
-                        <input class="table__model" type="text" :value="model[id]"/>
+                        <input class="table__model" type="text" v-model="car.model" @blur="setLocal" />
                     </td>
                     <td>
-                        <input class="table__speed" type="text" :value="speed[id]"/>
+                        <input class="table__speed" type="number" v-model="car.speed" @change="setLocal"/>
                     </td>
                     <td>
-                        <input class="table__lift" type="text" :value="lift[id]"/>
+                        <input class="table__lift" type="number" v-model="car.lift" @change="setLocal"/>
                     </td>
                     <td>
                         <input
                                 class="table__passengers"
-                                type="text"
-                                :value="passengers[id]"
+                                type="number"
+                                v-model="car.passengers"
+                                @change="setLocal"
                         />
                     </td>
                     <td>
                         <input
                                 class="table__size_box"
-                                type="text"
-                                :value="size_box[id]"
+                                type="number"
+                                v-model="car.size_box"
+                                @change="setLocal"
                         />
                     </td>
                     <td>
                         <input
                                 class="table__spend_fuel"
-                                type="text"
-                                :value="spend_fuel[id]"
+                                type="number"
+                                v-model="car.spend_fuel"
+                                @change="setLocal"
                         />
                     </td>
                     <td>
                         <input
                                 class="table__type_fuel"
                                 type="text"
-                                :value="type_fuel[id]"
+                                v-model="car.type_fuel"
+                                @change="setLocal"
                         />
                     </td>
                     <td>
                         <input
                                 class="table__reserve_motor"
-                                type="text"
-                                :value="reserve_motor[id]"
+                                type="number"
+                                v-model="car.reserve_motor"
+                                @change="setLocal"
                         />
                     </td>
                     <td>
                         <input
                                 class="table__worked_time"
-                                type="text"
-                                :value="worked_time[id]"
+                                type="number"
+                                v-model="car.worked_time"
+                                @change="setLocal"
                         />
                     </td>
                     <td>
                         <input
                                 class="table__recovery_time"
-                                type="text"
-                                :value="recovery_time[id]"
+                                type="number"
+                                v-model="car.recovery_time"
+                                @change="setLocal"
                         />
                     </td>
                     <td>
                         <input
                                 class="table__wear_factor_1000"
-                                type="text"
-                                :value="wear_factor_1000[id]"
+                                type="number"
+                                v-model="car.wear_factor_1000"
+                                @change="setLocal"
                         />
                     </td>
                     <td>
                         <input
                                 class="table__wear_factor_before"
-                                type="text"
-                                :value="wear_factor_before[id]"
+                                type="number"
+                                v-model="car.wear_factor_before"
+                                @change="setLocal"
                         />
                     </td>
                     <td>
                         <input
                                 class="table__wear_factor_after"
-                                type="text"
-                                :value="wear_factor_after[id]"
+                                type="number"
+                                v-model="car.wear_factor_after"
+                                @change="setLocal"
                         />
                     </td>
                     <td>
                         <input
                                 class="table__term_service"
-                                type="text"
-                                :value="term_service[id]"
+                                type="number"
+                                v-model="car.term_service"
+                                @change="setLocal"
                         />
                     </td>
                     <td>
                         <input
                                 class="table__kilometrage"
-                                type="text"
-                                :value="kilometrage[id]"
+                                type="number"
+                                v-model="car.kilometrage"
+                                @change="setLocal"
                         />
                     </td>
                     <td>
                         <input
                                 class="table__car_cost"
-                                type="text"
-                                :value="car_cost[id]"
+                                type="number"
+                                v-model="car.car_cost"
+                                @change="setLocal"
                         />
                     </td>
                 </tr>
@@ -148,6 +161,7 @@
     export default {
         data() {
             return {
+                cars: [],
                 model: [
                     "УАЗ-315195",
                     "УАЗ-315195",
@@ -629,6 +643,7 @@
                     877.913,
                     877.913
                 ]
+
             }
         },
         components: {
@@ -636,31 +651,65 @@
         },
         methods: {
             addCar() {
-                let table__content = document.querySelector(".table__content");
-                let add_content = document.createElement("tr");
-                add_content.innerHTML = `
-                    <td><input type="checkbox" class="check-car"></td>
-                    <td><input class="table__model" type="text" value=""></td>
-                    <td><input class="table__speed" type="text" value=""></td>
-                    <td><input class="table__lift" type="text" value=""></td>
-                    <td><input class="table__passengers" type="text" value=""> </td>
-                    <td><input class="table__size_box" type="text" value=""> </td>
-                    <td><input class="table__spend_fuel" type="text" value=""> </td>
-                    <td><input class="table__type_fuel" type="text" value=""> </td>
-                    <td><input class="table__reserve_motor" type="text" value=""> </td>
-                    <td><input class="table__worked_time" type="text" value=""> </td>
-                    <td><input class="table__recovery_time" type="text" value=""> </td>
-                    <td><input class="table__wear_factor_1000" type="text" value=""> </td>
-                    <td><input class="table__wear_factor_before" type="text" value=""> </td>
-                    <td><input class="table__wear_factor_after" type="text" value=""> </td>
-                    <td><input class="table__term_service" type="text" value=""> </td>
-                    <td><input class="table__kilometrage" type="text" value=""> </td>
-                    <td><input class="table__car_cost" type="text" value=""> </td>
-                 `;
-                add_content.classList.toggle("row-car");
-                table__content.appendChild(add_content);
-                let div = document.createElement("div");
-                table__content.appendChild(div);
+                this.cars.push({
+                    model : '',
+                    speed : '',
+                    lift : '',
+                    passengers: '',
+                    size_box : '',
+                    spend_fuel : '',
+                    type_fuel : '',
+                    reserve_motor : '',
+                    worked_time : '',
+                    recovery_time : '',
+                    coeff_ready : '',
+                    fuel_price : '',
+                    wear_factor_1000 : '',
+                    wear_factor_before : '',
+                    wear_factor_after : '',
+                    total_wear_factor_before : '',
+                    total_wear_factor_after_plan : '',
+                    total_wear_factor_after_fact : '',
+                    term_service : '',
+                    kilometrage : '',
+                    car_cost : ''
+                })
+            },
+            setLocal () {
+                localStorage.setItem('cars', JSON.stringify(this.cars));
+            }
+        },
+        created() {
+            let localCars = localStorage.getItem('cars')
+            if (localCars !== null){
+                this.cars = JSON.parse(localCars)
+            } else {
+                for (let index = 0; index< this.model.length; index++) {
+                    let tempObj = {
+                        model: this.model[index],
+                        speed: this.speed[index],
+                        lift: this.lift[index],
+                        passengers: this.passengers[index],
+                        size_box: this.size_box[index],
+                        spend_fuel: this.spend_fuel[index],
+                        type_fuel: this.type_fuel[index],
+                        reserve_motor: this.reserve_motor[index],
+                        worked_time: this.worked_time[index],
+                        recovery_time: this.recovery_time[index],
+                        coeff_ready: this.coeff_ready[index],
+                        fuel_price: this.fuel_price[index],
+                        wear_factor_1000: this.wear_factor_1000[index],
+                        wear_factor_before: this.wear_factor_before[index],
+                        wear_factor_after: this.wear_factor_after[index],
+                        total_wear_factor_before: this.total_wear_factor_before[index],
+                        total_wear_factor_after_plan: this.total_wear_factor_after_plan[index],
+                        total_wear_factor_after_fact: this.total_wear_factor_after_fact[index],
+                        term_service: this.term_service[index],
+                        kilometrage: this.kilometrage[index],
+                        car_cost: this.car_cost[index]
+                    }
+                    this.cars.push(tempObj)
+                }
             }
         }
     }
